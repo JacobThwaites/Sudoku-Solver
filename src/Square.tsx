@@ -1,4 +1,5 @@
 import React from 'react';
+import './Square.css'
 
 interface SquareProps {
   value: number,
@@ -20,6 +21,7 @@ function Square(props: SquareProps) {
   return (
     <>
       <input 
+        className='square'
         type="text" 
         value={props.value}
         maxLength={1} 
