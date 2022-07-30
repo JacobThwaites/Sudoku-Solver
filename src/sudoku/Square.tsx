@@ -23,7 +23,7 @@ function Square(props: SquareProps) {
       <input 
         className='square'
         type="text" 
-        value={props.value}
+        value={props.value ? props.value : ''}
         maxLength={1} 
         onChange={handleInput}
       />
