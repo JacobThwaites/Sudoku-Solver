@@ -1,22 +1,32 @@
 import React from "react";
 import Square from "./Square";
 import './Row.css';
+import { getSquareClassname } from "../utils/squareClassnameGenerator";
 
 interface RowProps {
-  index: number,
+  rowIndex: number,
   numbers: Array<number>,
   handleChange: Function,
 }
 
 function Row(props: RowProps) {
     function handleChange(num: number, column: number) {
-        props.handleChange(num, props.index, column);
+        props.handleChange(num, props.rowIndex, column);
     }
+
 
   return (
     <div className='row'>
       {props.numbers.map((num: number, index: number) => {
-        return <Square key={index} index={index} value={num} handleChange={handleChange}/>;
+        return (
+          <Square 
+            className={getSquareClassname(props.rowIndex + 1, index + 1)} 
+            key={index} 
+            column={index} 
+            value={num} 
+            handleChange={handleChange}
+          />
+        );
       })}
     </div>
   );

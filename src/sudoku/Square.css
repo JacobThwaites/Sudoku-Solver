@@ -1,3 +1,21 @@
 .square {
-    max-width: 50px;
+    width: 9%;
+    height: 9%;
+    border: 1px solid black;
+}
+
+.top-square {
+    border-top: 3px solid black;
+}
+
+.bottom-square {
+    border-bottom: 3px solid black;
+}
+
+.left-square {
+    border-left: 3px solid black;
+}
+
+.right-square {
+    border-right: 3px solid black;
 }

@@ -11,7 +11,7 @@ function Sudoku(props: SudokuProps) {
   return (
     <div id='sudoku'>
       {props.rows.map((row, index) => {
-        return <Row key={index} index={index} numbers={row} handleChange={props.handleChange}/>
+        return <Row key={index} rowIndex={index} numbers={row} handleChange={props.handleChange}/>
       })
     }
     </div>

@@ -3,8 +3,9 @@ import './Square.css'
 
 interface SquareProps {
   value: number,
-  index: number,
+  column: number,
   handleChange: Function, 
+  className: string
 }
 
 function Square(props: SquareProps) {
@@ -15,13 +16,13 @@ function Square(props: SquareProps) {
       return;
     }
 
-    props.handleChange(input, props.index);
+    props.handleChange(input, props.column);
   }
 
   return (
     <>
       <input 
-        className='square'
+        className={props.className}
         type="text" 
         value={props.value ? props.value : ''}
         maxLength={1} 
