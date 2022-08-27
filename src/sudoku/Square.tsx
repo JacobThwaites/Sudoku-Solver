@@ -8,7 +8,7 @@ interface SquareProps {
   className: string
 }
 
-function Square(props: SquareProps) {
+export default function Square(props: SquareProps) {
   function handleInput(event: any) {
     const input = Number(event.target.value);
 
@@ -31,5 +31,3 @@ function Square(props: SquareProps) {
     </>
   );
 }
-
-export default Square;

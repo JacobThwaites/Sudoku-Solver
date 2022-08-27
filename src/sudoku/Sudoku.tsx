@@ -7,7 +7,7 @@ interface SudokuProps {
   handleChange: Function
 }
 
-function Sudoku(props: SudokuProps) {
+export default function Sudoku(props: SudokuProps) {
   return (
     <div id='sudoku'>
       {props.rows.map((row, index) => {
@@ -17,5 +17,3 @@ function Sudoku(props: SudokuProps) {
     </div>
   );
 }
-
-export default Sudoku;

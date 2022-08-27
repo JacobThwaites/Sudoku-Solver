@@ -9,7 +9,7 @@ interface RowProps {
   handleChange: Function,
 }
 
-function Row(props: RowProps) {
+export default function Row(props: RowProps) {
     function handleChange(num: number, column: number) {
         props.handleChange(num, props.rowIndex, column);
     }
@@ -31,5 +31,3 @@ function Row(props: RowProps) {
     </div>
   );
 }
-
-export default Row;

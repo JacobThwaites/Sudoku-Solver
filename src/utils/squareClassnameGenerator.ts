@@ -1,11 +1,11 @@
 export function getSquareClassname(row: number, col: number): string {
-    let className = 'square'
+    let className = 'square';
     
     if (row === 1) {
-        className += ' top-square'
+        className += ' top-square';
     }
     if (row % 3 === 0) {
-        className += ' bottom-square'
+        className += ' bottom-square';
     }
 
     if (col === 1) {
@@ -13,7 +13,7 @@ export function getSquareClassname(row: number, col: number): string {
     }
 
     if (col % 3 === 0) {
-        className += ' right-square'
+        className += ' right-square';
     }
 
     return className;
