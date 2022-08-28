@@ -33,7 +33,7 @@ export default function Row(props: RowProps) {
         const isActiveSquare = areCoordinatesEqual([props.rowIndex, column], props.activeSquare);
         return (
           <Square 
-            className={getSquareClassname(props.rowIndex + 1, column + 1, isSet, isActiveSquare)} 
+            className={getSquareClassname(props.rowIndex + 1, column + 1, isSet)} 
             isActiveSquare={isActiveSquare}
             key={column} 
             column={column} 
