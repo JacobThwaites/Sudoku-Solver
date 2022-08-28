@@ -67,7 +67,11 @@ export default function App() {
 
   return (
     <div>
-      <Sudoku handleChange={handleChange} rows={rows} startingPosition={startingPosition}/>
+      <Sudoku 
+        handleChange={handleChange} 
+        rows={rows} 
+        startingPosition={startingPosition}
+      />
       <SolveButton
         sudoku={rows}
         setStartingPosition={updateStartingPosition}

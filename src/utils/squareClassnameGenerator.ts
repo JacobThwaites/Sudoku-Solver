@@ -1,4 +1,4 @@
-export function getSquareClassname(row: number, col: number, isNumberSet: boolean): string {
+export function getSquareClassname(row: number, col: number, isNumberSet: boolean, isActiveSquare: boolean): string {
     let className = 'square';
     
     if (row === 1) {
@@ -18,6 +18,12 @@ export function getSquareClassname(row: number, col: number, isNumberSet: boolea
 
     if (isNumberSet) {
         className += ' starting-position';
+    }
+
+    if (isActiveSquare) {
+        className += ' media media--clicked'; 
+    } else {
+        className += ' media';
     }
 
     return className;

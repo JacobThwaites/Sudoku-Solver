@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from "react";
 import Row from './Row';
-import './Sudoku.css';
 import { SudokuGridType } from "../SudokuGridType";
+import { CoordinatesType } from "../utils/CoordinatesType";
+import { getNewActiveSquare } from "../utils/getNewActiveSquare";
+import './Sudoku.css';
+
 
 interface SudokuProps {
   rows: SudokuGridType,
@@ -10,6 +13,13 @@ interface SudokuProps {
 }
 
 export default function Sudoku(props: SudokuProps) {
+  const [activeSquare, setActiveSquare] = useState<CoordinatesType>([-1, -1]);
+
+  function handleArrowKey(keyCode: number) {  
+    const newActiveSquare = getNewActiveSquare(activeSquare, keyCode);
+    setActiveSquare(newActiveSquare);
+  }
+
   return (
     <div id='sudoku'>
       {props.rows.map((row, index) => {
@@ -19,7 +29,10 @@ export default function Sudoku(props: SudokuProps) {
             rowIndex={index} 
             numbers={row} 
             handleChange={props.handleChange}
-            startingPosition={props.startingPosition}
+            handleArrowKey={handleArrowKey}
+            rowStartingPosition={props.startingPosition[index]}
+            activeSquare={activeSquare}
+            setActiveSquare={setActiveSquare}
           />
         )
       })
