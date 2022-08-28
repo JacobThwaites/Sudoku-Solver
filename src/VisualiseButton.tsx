@@ -1,7 +1,8 @@
 import React from 'react';
+import { SudokuGridType } from "./SudokuGridType";
 
 interface VisualiseButtonProps {
-    sudoku: Array<Array<number>>,
+    sudoku: SudokuGridType,
     updateRows: Function,
 }
 

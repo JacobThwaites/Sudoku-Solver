@@ -1,7 +1,8 @@
 import React from "react";
+import { SudokuGridType } from "./SudokuGridType";
 
 interface SolveButtonProps {
-  sudoku: Array<Array<number>>;
+  sudoku: SudokuGridType;
   setStartingPosition: Function;
   updateRows: Function;
   setSolutionSteps: Function;

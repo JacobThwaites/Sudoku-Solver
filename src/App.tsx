@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import SolveButton from "./SolveButton";
 import Sudoku from "./sudoku/Sudoku";
 import { emptyRows } from "./utils/emptyRowGenerator";
+import { SudokuGridType } from "./SudokuGridType";
 
-type Rows = Array<Array<number>>;
 
 export default function App() {
   const [rows, setRows] = useState(emptyRows);
@@ -16,11 +16,11 @@ export default function App() {
     setRows(newRows);
   };
 
-  function updateStartingPosition(startingPosition: any) {
+  function updateStartingPosition(startingPosition: SudokuGridType) {
     setStartingPosition(startingPosition);
   }
 
-  function updateRows(rows: Rows) {
+  function updateRows(rows: SudokuGridType) {
     setRows(rows);
   }
 
@@ -67,7 +67,7 @@ export default function App() {
 
   return (
     <div>
-      <Sudoku handleChange={handleChange} rows={rows} />
+      <Sudoku handleChange={handleChange} rows={rows} startingPosition={startingPosition}/>
       <SolveButton
         sudoku={rows}
         setStartingPosition={updateStartingPosition}
