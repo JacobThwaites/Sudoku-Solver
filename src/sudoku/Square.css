@@ -9,6 +9,7 @@
     width: 11.11%;
     height: 11.201%;
     border: 1px solid #444;
+    caret-color: transparent;
 }
 
 .square {

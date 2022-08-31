@@ -8,7 +8,7 @@ import './Sudoku.css';
 
 interface SudokuProps {
   rows: SudokuGridType,
-  handleChange: Function,
+  setSquareValue: Function,
   startingPosition: SudokuGridType
 }
 
@@ -28,7 +28,7 @@ export default function Sudoku(props: SudokuProps) {
             key={index} 
             rowIndex={index} 
             numbers={row} 
-            handleChange={props.handleChange}
+            setSquareValue={props.setSquareValue}
             handleArrowKey={handleArrowKey}
             rowStartingPosition={props.startingPosition[index]}
             activeSquare={activeSquare}

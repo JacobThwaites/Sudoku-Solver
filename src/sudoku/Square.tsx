@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react';
-import { isArrowKeyPress } from '../utils/isArrowKeyPress';
+import { isArrowKeyPress, isBackspacePress, isNumberKeyPress } from '../utils/keypressValidation';
 import './Square.css'
 
 
 interface SquareProps {
   value: number,
   column: number,
-  handleChange: Function, 
+  setSquareValue: Function, 
   handleArrowKey: Function,
   className: string,
   setActiveSquare: any,
@@ -23,19 +23,19 @@ export default function Square(props: SquareProps) {
     }
   }, [props.isActiveSquare]);
 
-  function handleInput(event: any) {
-    const input = Number(event.target.value);
-
-    if (!input || input > 9) {
-      return;
-    }
-
-    props.handleChange(input, props.column);
-  }
-
   function handleKeyDown(event: any) {
     if (isArrowKeyPress(event.keyCode)) {
       props.handleArrowKey(event.keyCode);
+      return;
+    }
+
+    if (isBackspacePress(event.keyCode)) {
+      props.setSquareValue(null, props.column);
+      return;
+    }
+
+    if (isNumberKeyPress(event.keyCode)) {
+      props.setSquareValue(Number(event.key), props.column);
       return;
     }
   }
@@ -48,7 +48,8 @@ export default function Square(props: SquareProps) {
         value={props.value ? props.value : ''}
         maxLength={1} 
         ref={ref}
-        onChange={handleInput}
+        // onChange handled by onKeydown
+        onChange={() => {}}
         onKeyDown={handleKeyDown}
         onClick={props.setActiveSquare}
       />

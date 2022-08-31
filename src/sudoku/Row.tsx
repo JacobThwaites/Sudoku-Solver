@@ -9,7 +9,7 @@ import { areCoordinatesEqual } from "../utils/isActiveArray";
 interface RowProps {
   rowIndex: number,
   numbers: Array<number>,
-  handleChange: Function,
+  setSquareValue: Function,
   handleArrowKey: Function,
   rowStartingPosition: Array<number>,
   activeSquare: CoordinatesType,
@@ -17,8 +17,8 @@ interface RowProps {
 }
 
 export default function Row(props: RowProps) {
-    function handleChange(num: number, column: number) {
-        props.handleChange(num, props.rowIndex, column);
+    function setSquareValue(num: number, column: number) {
+        props.setSquareValue(num, props.rowIndex, column);
     }
 
     function setActiveSquare(column: number) {
@@ -38,7 +38,7 @@ export default function Row(props: RowProps) {
             key={column} 
             column={column} 
             value={num} 
-            handleChange={handleChange}
+            setSquareValue={setSquareValue}
             handleArrowKey={props.handleArrowKey}
             setActiveSquare={() => setActiveSquare(column)}
           />

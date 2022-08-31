@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 import SolveButton from "./SolveButton";
 import Sudoku from "./sudoku/Sudoku";
 import { emptyRows } from "./utils/emptyRowGenerator";
@@ -9,8 +9,9 @@ export default function App() {
   const [rows, setRows] = useState(emptyRows);
   const [solutionSteps, setSolutionSteps] = useState([]);
   const [startingPosition, setStartingPosition] = useState(emptyRows);
+  const shouldDisplaySolution = useRef(false);
 
-  const handleChange = (num: number, row: number, col: number) => {
+  const setSquareValue = (num: number, row: number, col: number) => {
     const newRows = [...rows];
     newRows[row][col] = num;
     setRows(newRows);
@@ -33,12 +34,20 @@ export default function App() {
       }
     }
 
+    shouldDisplaySolution.current = false;
     setRows(newRows);
+    setStartingPosition(newRows);
   }
 
   function showSolutionSteps() {
+    shouldDisplaySolution.current = true;
     setRowsToStartingPosition();
     for (let i = 0; i < solutionSteps.length; i++) {
+      // TODO: add ability to break loop on clear button click
+      if (!shouldDisplaySolution.current) {
+        break;
+      }
+      console.log(shouldDisplaySolution);
       const step = solutionSteps[i];
       showStepAfterTime(step, 100 * (i + 1));
     }
@@ -61,14 +70,14 @@ export default function App() {
       const row = step[0];
       const col = step[1];
       const num = step[2];
-      handleChange(num, row, col);
+      setSquareValue(num, row, col);
     }, time);
   }
 
   return (
     <div>
       <Sudoku 
-        handleChange={handleChange} 
+        setSquareValue={setSquareValue} 
         rows={rows} 
         startingPosition={startingPosition}
       />
