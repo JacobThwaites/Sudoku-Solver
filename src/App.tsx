@@ -1,31 +1,36 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import SolveButton from "./SolveButton";
 import Sudoku from "./sudoku/Sudoku";
 import { emptyRows } from "./utils/emptyRowGenerator";
 import { SudokuGridType } from "./SudokuGridType";
 
 
-export default function App() {
+export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyRows);
   const [solutionSteps, setSolutionSteps] = useState([]);
   const [startingPosition, setStartingPosition] = useState(emptyRows);
-  const shouldDisplaySolution = useRef(false);
+  const [shouldDisplaySolution, setShouldDisplaySolution] = useState(false);
+  const displayingSolution = useRef(false);
+  
+  useEffect(() => {
+    displayingSolution.current = shouldDisplaySolution;
+  }, [shouldDisplaySolution]);
 
-  const setSquareValue = (num: number, row: number, col: number) => {
+  function setSquareValue(num: number, row: number, col: number): void {
     const newRows = [...rows];
     newRows[row][col] = num;
     setRows(newRows);
   };
 
-  function updateStartingPosition(startingPosition: SudokuGridType) {
+  function updateStartingPosition(startingPosition: SudokuGridType): void {
     setStartingPosition(startingPosition);
   }
 
-  function updateRows(rows: SudokuGridType) {
+  function updateRows(rows: SudokuGridType): void {
     setRows(rows);
   }
 
-  function clearRows() {
+  function clearRows(): void {
     const newRows = [...rows];
 
     for (let i = 0; i < newRows.length; i++) {
@@ -34,26 +39,28 @@ export default function App() {
       }
     }
 
-    shouldDisplaySolution.current = false;
+    setShouldDisplaySolution(false);
     setRows(newRows);
     setStartingPosition(newRows);
   }
 
-  function showSolutionSteps() {
-    shouldDisplaySolution.current = true;
+  async function showSolutionSteps() {
+    setShouldDisplaySolution(true);
     setRowsToStartingPosition();
+
     for (let i = 0; i < solutionSteps.length; i++) {
-      // TODO: add ability to break loop on clear button click
-      if (!shouldDisplaySolution.current) {
+      await delay(100);
+      
+      if (!displayingSolution.current) {
         break;
       }
-      console.log(shouldDisplaySolution);
+
       const step = solutionSteps[i];
-      showStepAfterTime(step, 100 * (i + 1));
+      addStepToGrid(step);
     }
   }
 
-  function setRowsToStartingPosition() {
+  function setRowsToStartingPosition(): void {
     const newRows = [...rows];
 
     for (let i = 0; i < newRows.length; i++) {
@@ -65,13 +72,15 @@ export default function App() {
     setRows(newRows);
   }
 
-  function showStepAfterTime(step: number[], time: number) {
-    setTimeout(() => {
-      const row = step[0];
-      const col = step[1];
-      const num = step[2];
-      setSquareValue(num, row, col);
-    }, time);
+  function delay(ms: number): Promise<number> {
+    return new Promise(res => setTimeout(res, ms));
+  } 
+
+  function addStepToGrid(step: number[]): void {
+    const row = step[0];
+    const col = step[1];
+    const num = step[2];
+    setSquareValue(num, row, col);
   }
 
   return (
