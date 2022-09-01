@@ -1,4 +1,3 @@
-import React from "react";
 import Square from "./Square";
 import { getSquareClassname } from "../utils/squareClassnameGenerator";
 import { CoordinatesType } from "../utils/CoordinatesType";

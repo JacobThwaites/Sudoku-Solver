@@ -11,6 +11,7 @@ export default function App(): JSX.Element {
   const [startingPosition, setStartingPosition] = useState(emptyRows);
   const [shouldDisplaySolution, setShouldDisplaySolution] = useState(false);
   const displayingSolution = useRef(false);
+  const [isSolveButtonPressed, setIsSolveButtonPressed] = useState(false);
   
   useEffect(() => {
     displayingSolution.current = shouldDisplaySolution;
@@ -26,8 +27,14 @@ export default function App(): JSX.Element {
     setStartingPosition(startingPosition);
   }
 
-  function updateRows(rows: SudokuGridType): void {
+  function onSolveButtonPressed(rows: SudokuGridType): void {
+    setIsSolveButtonPressed(true);
     setRows(rows);
+  }
+
+  function onClearButtonPressed(): void {
+    clearRows();
+    setIsSolveButtonPressed(false);
   }
 
   function clearRows(): void {
@@ -42,6 +49,7 @@ export default function App(): JSX.Element {
     setShouldDisplaySolution(false);
     setRows(newRows);
     setStartingPosition(newRows);
+    setSolutionSteps([]);
   }
 
   async function showSolutionSteps() {
@@ -91,13 +99,14 @@ export default function App(): JSX.Element {
         startingPosition={startingPosition}
       />
       <SolveButton
+        disabled={isSolveButtonPressed}
         sudoku={rows}
         setStartingPosition={updateStartingPosition}
-        updateRows={updateRows}
+        updateRows={onSolveButtonPressed}
         setSolutionSteps={setSolutionSteps}
       />
-      <button onClick={clearRows}>Clear</button>
-      <button onClick={showSolutionSteps}>Show Steps</button>
+      <button onClick={onClearButtonPressed}>Clear</button>
+      <button disabled={!solutionSteps.length} onClick={showSolutionSteps}>Show Steps</button>
     </div>
   );
 }

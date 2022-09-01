@@ -3,6 +3,7 @@ import { SudokuGridType } from "./SudokuGridType";
 
 
 interface SolveButtonProps {
+  disabled: boolean,
   sudoku: SudokuGridType;
   setStartingPosition: Function;
   updateRows: Function;
@@ -29,5 +30,5 @@ export default function SolveButton(props: SolveButtonProps) {
     props.setSolutionSteps(data.steps);
   }
 
-  return <button onClick={fetchSolution}>Solve</button>;
+  return <button disabled={props.disabled} onClick={fetchSolution}>Solve</button>;
 }
