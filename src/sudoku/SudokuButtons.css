@@ -1,0 +1,7 @@
+#sudoku-buttons {
+    display: flex;
+    width: 400px;
+    gap: 10px;
+    height: 40px;
+    margin-top: 10px;
+}

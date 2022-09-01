@@ -1,4 +1,4 @@
-import React from "react";
+import StyledButton from "./sudoku/Button";
 import { SudokuGridType } from "./SudokuGridType";
 
 
@@ -30,5 +30,5 @@ export default function SolveButton(props: SolveButtonProps) {
     props.setSolutionSteps(data.steps);
   }
 
-  return <button disabled={props.disabled} onClick={fetchSolution}>Solve</button>;
+  return <StyledButton disabled={props.disabled} onClick={fetchSolution} label='Solve'/>
 }

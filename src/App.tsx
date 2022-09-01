@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import SolveButton from "./SolveButton";
 import Sudoku from "./sudoku/Sudoku";
 import { emptyRows } from "./utils/emptyRowGenerator";
 import { SudokuGridType } from "./SudokuGridType";
+import SudokuButtons from "./sudoku/SudokuButtons";
 
 
 export default function App(): JSX.Element {
@@ -98,15 +98,16 @@ export default function App(): JSX.Element {
         rows={rows} 
         startingPosition={startingPosition}
       />
-      <SolveButton
-        disabled={isSolveButtonPressed}
-        sudoku={rows}
-        setStartingPosition={updateStartingPosition}
-        updateRows={onSolveButtonPressed}
+      <SudokuButtons 
+        isSolveButtonDisabled={isSolveButtonPressed}
+        rows={rows}
+        updateStartingPosition={updateStartingPosition}
+        onSolveButtonPressed={onSolveButtonPressed}
         setSolutionSteps={setSolutionSteps}
+        onClearButtonPressed={onClearButtonPressed}
+        isShowStepsButtonDisabled={!solutionSteps.length}
+        onSolutionButtonClick={showSolutionSteps}
       />
-      <button onClick={onClearButtonPressed}>Clear</button>
-      <button disabled={!solutionSteps.length} onClick={showSolutionSteps}>Show Steps</button>
     </div>
   );
 }
