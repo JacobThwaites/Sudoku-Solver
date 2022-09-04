@@ -1,5 +1,6 @@
-import StyledButton from "./sudoku/Button";
+import StyledButton from "./sudoku/StyledButton";
 import { SudokuGridType } from "./SudokuGridType";
+import { SudokuSolver } from "./solver/SudokuSolver";
 
 
 interface SolveButtonProps {
@@ -12,23 +13,24 @@ interface SolveButtonProps {
 
 export default function SolveButton(props: SolveButtonProps) {
   async function fetchSolution() {
-    props.setStartingPosition(props.sudoku);
+    const startingPosition = copySudokuGrid(props.sudoku);
+    props.setStartingPosition(startingPosition);
 
-    const headers = new Headers();
-    headers.append(
-      "X-CSRFToken",
-      "mFt9iI8ePmrSPrVMRYTziISABwVIc6W6voUMHobLGr6oV8Wg9HirsTXO04TFi57w"
-    );
-    const res = await fetch("http://localhost:8000/solve/", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({ sudoku: props.sudoku }),
-    });
-
-    const data = await res.json();
-    props.updateRows(data.solution);
-    props.setSolutionSteps(data.steps);
+    const solver = new SudokuSolver(props.sudoku);
+    const solution = solver.solve();
+    props.updateRows(solution);
+    props.setSolutionSteps(solver.steps); 
   }
 
   return <StyledButton disabled={props.disabled} onClick={fetchSolution} label='Solve'/>
+}
+
+function copySudokuGrid(sudoku: SudokuGridType): SudokuGridType {
+  const copy = [];
+
+    for (let i = 0; i < sudoku.length; i++) {
+      copy.push([...sudoku[i]]);
+    }
+
+    return copy;
 }

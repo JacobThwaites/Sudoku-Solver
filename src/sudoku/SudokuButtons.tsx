@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import SolveButton from "../SolveButton";
 import { SudokuGridType } from "../SudokuGridType";
-import StyledButton from "./Button";
+import StyledButton from "./StyledButton";
 import './SudokuButtons.css';
 
 type Props = {
