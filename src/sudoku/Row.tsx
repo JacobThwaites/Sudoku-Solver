@@ -2,7 +2,7 @@ import Square from "./Square";
 import { getSquareClassname } from "../utils/squareClassnameGenerator";
 import { CoordinatesType } from "../utils/CoordinatesType";
 import './Row.css';
-import { areCoordinatesEqual } from "../utils/isActiveArray";
+import { areCoordinatesEqual } from "../utils/utils";
 
 
 interface RowProps {

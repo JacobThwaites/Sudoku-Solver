@@ -1,17 +1,18 @@
 import { useRef, useState, useEffect } from "react";
 import Sudoku from "./sudoku/Sudoku";
-import { emptyRows } from "./utils/emptyRowGenerator";
+import { emptyGrid } from "./utils/emptyRowGenerator";
 import { SudokuGridType } from "./SudokuGridType";
 import SudokuButtons from "./sudoku/SudokuButtons";
-
+import Alert from '@mui/material/Alert';
 
 export default function App(): JSX.Element {
-  const [rows, setRows] = useState(emptyRows);
+  const [rows, setRows] = useState(emptyGrid);
   const [solutionSteps, setSolutionSteps] = useState([]);
-  const [startingPosition, setStartingPosition] = useState(emptyRows);
+  const [startingPosition, setStartingPosition] = useState(emptyGrid);
   const [shouldDisplaySolution, setShouldDisplaySolution] = useState(false);
   const displayingSolution = useRef(false);
   const [isSolveButtonPressed, setIsSolveButtonPressed] = useState(false);
+  const [noSolutionFound, setNoSolutionFound] = useState(false);
   
   useEffect(() => {
     displayingSolution.current = shouldDisplaySolution;
@@ -35,6 +36,7 @@ export default function App(): JSX.Element {
   function onClearButtonPressed(): void {
     clearRows();
     setIsSolveButtonPressed(false);
+    setNoSolutionFound(false);
   }
 
   function clearRows(): void {
@@ -98,6 +100,9 @@ export default function App(): JSX.Element {
         rows={rows} 
         startingPosition={startingPosition}
       />
+      {noSolutionFound &&
+        <Alert severity="error">No valid solution found!</Alert>
+      }
       <SudokuButtons 
         isSolveButtonDisabled={isSolveButtonPressed}
         rows={rows}
@@ -107,6 +112,7 @@ export default function App(): JSX.Element {
         onClearButtonPressed={onClearButtonPressed}
         isShowStepsButtonDisabled={!solutionSteps.length}
         onSolutionButtonClick={showSolutionSteps}
+        setNoSolutionFound={setNoSolutionFound}
       />
     </div>
   );

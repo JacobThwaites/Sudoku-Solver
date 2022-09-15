@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { isArrowKeyPress, isBackspacePress, isNumberKeyPress } from '../utils/keypressValidation';
 import './Square.css'
 

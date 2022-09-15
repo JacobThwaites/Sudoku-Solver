@@ -7,12 +7,13 @@ import './SudokuButtons.css';
 type Props = {
     isSolveButtonDisabled: boolean,
     rows: SudokuGridType,
+    isShowStepsButtonDisabled: boolean,
     updateStartingPosition(startingPosition: SudokuGridType): void,
     onSolveButtonPressed(rows: SudokuGridType): void,
     setSolutionSteps: Dispatch<SetStateAction<any[]>>,
     onClearButtonPressed(): void,
-    isShowStepsButtonDisabled: boolean,
-    onSolutionButtonClick(): void
+    onSolutionButtonClick(): void,
+    setNoSolutionFound: Dispatch<SetStateAction<boolean>>
 }
 
 export default function SudokuButtons(props: Props): JSX.Element {
@@ -24,6 +25,7 @@ export default function SudokuButtons(props: Props): JSX.Element {
                 setStartingPosition={props.updateStartingPosition}
                 updateRows={props.onSolveButtonPressed}
                 setSolutionSteps={props.setSolutionSteps}
+                setNoSolutionFound={props.setNoSolutionFound}
             />
             <StyledButton onClick={props.onClearButtonPressed} label='Clear'/>
             <StyledButton disabled={props.isShowStepsButtonDisabled} onClick={props.onSolutionButtonClick} label='Show Steps'/>

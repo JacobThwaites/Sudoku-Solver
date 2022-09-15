@@ -1,6 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
 import StyledButton from "./sudoku/StyledButton";
 import { SudokuGridType } from "./SudokuGridType";
 import { SudokuSolver } from "./solver/SudokuSolver";
+import { isValidSudoku } from "./utils/utils";
 
 
 interface SolveButtonProps {
@@ -9,17 +11,30 @@ interface SolveButtonProps {
   setStartingPosition: Function;
   updateRows: Function;
   setSolutionSteps: Function;
+  setNoSolutionFound: Dispatch<SetStateAction<boolean>>,
 }
 
 export default function SolveButton(props: SolveButtonProps) {
+
   async function fetchSolution() {
     const startingPosition = copySudokuGrid(props.sudoku);
     props.setStartingPosition(startingPosition);
+    const isValid = isValidSudoku(props.sudoku);
+
+    if (!isValid) {
+      props.setNoSolutionFound(true);
+      return;
+    }
 
     const solver = new SudokuSolver(props.sudoku);
     const solution = solver.solve();
-    props.updateRows(solution);
-    props.setSolutionSteps(solver.steps); 
+    
+    if (!solution) {
+      props.setNoSolutionFound(true);
+    } else {
+      props.updateRows(solution);
+      props.setSolutionSteps(solver.steps); 
+    }
   }
 
   return <StyledButton disabled={props.disabled} onClick={fetchSolution} label='Solve'/>

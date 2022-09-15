@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Row from './Row';
 import { SudokuGridType } from "../SudokuGridType";
 import { CoordinatesType } from "../utils/CoordinatesType";
 import { getNewActiveSquare } from "../utils/getNewActiveSquare";
-import './Sudoku.css';
-
 
 interface SudokuProps {
   rows: SudokuGridType,
