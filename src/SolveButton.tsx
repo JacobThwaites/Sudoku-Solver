@@ -12,6 +12,7 @@ interface SolveButtonProps {
   updateRows: Function;
   setSolutionSteps: Function;
   setNoSolutionFound: Dispatch<SetStateAction<boolean>>,
+  setIsInvalidPuzzle: Dispatch<SetStateAction<boolean>>,
 }
 
 export default function SolveButton(props: SolveButtonProps) {
@@ -22,7 +23,7 @@ export default function SolveButton(props: SolveButtonProps) {
     const isValid = isValidSudoku(props.sudoku);
 
     if (!isValid) {
-      props.setNoSolutionFound(true);
+      props.setIsInvalidPuzzle(true);
       return;
     }
 

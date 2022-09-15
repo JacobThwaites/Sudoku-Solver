@@ -13,7 +13,8 @@ type Props = {
     setSolutionSteps: Dispatch<SetStateAction<any[]>>,
     onClearButtonPressed(): void,
     onSolutionButtonClick(): void,
-    setNoSolutionFound: Dispatch<SetStateAction<boolean>>
+    setNoSolutionFound: Dispatch<SetStateAction<boolean>>,
+    setIsInvalidPuzzle: Dispatch<SetStateAction<boolean>>
 }
 
 export default function SudokuButtons(props: Props): JSX.Element {
@@ -26,6 +27,7 @@ export default function SudokuButtons(props: Props): JSX.Element {
                 updateRows={props.onSolveButtonPressed}
                 setSolutionSteps={props.setSolutionSteps}
                 setNoSolutionFound={props.setNoSolutionFound}
+                setIsInvalidPuzzle={props.setIsInvalidPuzzle}
             />
             <StyledButton onClick={props.onClearButtonPressed} label='Clear'/>
             <StyledButton disabled={props.isShowStepsButtonDisabled} onClick={props.onSolutionButtonClick} label='Show Steps'/>

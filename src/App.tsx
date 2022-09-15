@@ -4,6 +4,7 @@ import { emptyGrid } from "./utils/emptyRowGenerator";
 import { SudokuGridType } from "./SudokuGridType";
 import SudokuButtons from "./sudoku/SudokuButtons";
 import Alert from '@mui/material/Alert';
+import './App.css';
 
 export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyGrid);
@@ -13,6 +14,7 @@ export default function App(): JSX.Element {
   const displayingSolution = useRef(false);
   const [isSolveButtonPressed, setIsSolveButtonPressed] = useState(false);
   const [noSolutionFound, setNoSolutionFound] = useState(false);
+  const [isInvalidPuzzle, setIsInvalidPuzzle] = useState(false);
   
   useEffect(() => {
     displayingSolution.current = shouldDisplaySolution;
@@ -37,6 +39,7 @@ export default function App(): JSX.Element {
     clearRows();
     setIsSolveButtonPressed(false);
     setNoSolutionFound(false);
+    setIsInvalidPuzzle(false);
   }
 
   function clearRows(): void {
@@ -100,6 +103,9 @@ export default function App(): JSX.Element {
         rows={rows} 
         startingPosition={startingPosition}
       />
+      {isInvalidPuzzle &&
+        <Alert className='alert' severity="error">Invalid puzzle!</Alert>
+      }
       {noSolutionFound &&
         <Alert severity="error">No valid solution found!</Alert>
       }
@@ -113,6 +119,7 @@ export default function App(): JSX.Element {
         isShowStepsButtonDisabled={!solutionSteps.length}
         onSolutionButtonClick={showSolutionSteps}
         setNoSolutionFound={setNoSolutionFound}
+        setIsInvalidPuzzle={setIsInvalidPuzzle}
       />
     </div>
   );
