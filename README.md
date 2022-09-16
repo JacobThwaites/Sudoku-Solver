@@ -4,8 +4,6 @@ Application for solving sudoku puzzles from a given input and visualizing the so
 
 A valid sudoku solution is one which contains all the unique numbers between 1-9 in every row, every column, and every 3x3 square.
 
-You can view the live app [here](https://jacobthwaites.github.io/Sudoku-Solver/).
-
 ## Running Locally
 
 1. Open a terminal in the root directory of the project
