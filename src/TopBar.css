@@ -1,0 +1,8 @@
+#top-bar {
+    height: 80px;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -5,6 +5,7 @@ import { SudokuGridType } from "./SudokuGridType";
 import SudokuButtons from "./sudoku/SudokuButtons";
 import Alert from '@mui/material/Alert';
 import './App.css';
+import TopBar from "./TopBar";
 
 export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyGrid);
@@ -98,6 +99,7 @@ export default function App(): JSX.Element {
 
   return (
     <div>
+      <TopBar />
       <Sudoku 
         setSquareValue={setSquareValue} 
         rows={rows} 
