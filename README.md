@@ -1,4 +1,4 @@
-# Sudoku Solver UI
+# Sudoku Solver
 
 Application for solving sudoku puzzles from a given input and visualizing the solution. 
 
