@@ -6,6 +6,7 @@ import SudokuButtons from "./sudoku/SudokuButtons";
 import Alert from '@mui/material/Alert';
 import './App.css';
 import TopBar from "./TopBar";
+import { calculateDelayTime } from "./utils/utils";
 
 export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyGrid);
@@ -16,10 +17,17 @@ export default function App(): JSX.Element {
   const [isSolveButtonPressed, setIsSolveButtonPressed] = useState(false);
   const [noSolutionFound, setNoSolutionFound] = useState(false);
   const [isInvalidPuzzle, setIsInvalidPuzzle] = useState(false);
+  const [speed, setSpeed] = useState('Normal');
+  const currentSpeed = useRef('Normal');
   
+  // Allows interrupting the for loop for displaying the solution if clear button is pressed.
   useEffect(() => {
     displayingSolution.current = shouldDisplaySolution;
   }, [shouldDisplaySolution]);
+
+  useEffect(() => {
+    currentSpeed.current = speed;
+  }, [speed]);
 
   function setSquareValue(num: number, row: number, col: number): void {
     const newRows = [...rows];
@@ -63,7 +71,8 @@ export default function App(): JSX.Element {
     setRowsToStartingPosition();
 
     for (let i = 0; i < solutionSteps.length; i++) {
-      await delay(100);
+      const delayTime = calculateDelayTime(currentSpeed.current);
+      await delay(delayTime);
       
       if (!displayingSolution.current) {
         break;
@@ -99,7 +108,7 @@ export default function App(): JSX.Element {
 
   return (
     <div>
-      <TopBar />
+      <TopBar speed={speed} setSpeed={setSpeed}/>
       <Sudoku 
         setSquareValue={setSquareValue} 
         rows={rows} 

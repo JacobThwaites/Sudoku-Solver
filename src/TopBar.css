@@ -6,3 +6,11 @@
     flex-direction: row;
     align-items: center;
 }
+
+#speed-select-label {
+    color: white;
+}
+
+#speed-select {
+    color: white;
+}
