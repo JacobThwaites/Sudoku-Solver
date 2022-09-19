@@ -7,6 +7,7 @@ import Alert from '@mui/material/Alert';
 import './App.css';
 import TopBar from "./TopBar";
 import { calculateDelayTime } from "./utils/utils";
+import { SudokuGenerator } from "./solver/SudokuGenerator";
 
 export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyGrid);
@@ -41,6 +42,7 @@ export default function App(): JSX.Element {
 
   function onSolveButtonPressed(rows: SudokuGridType): void {
     setIsSolveButtonPressed(true);
+    setIsInvalidPuzzle(false);
     setRows(rows);
   }
 
@@ -106,9 +108,28 @@ export default function App(): JSX.Element {
     setSquareValue(num, row, col);
   }
 
+  function generateRandomPuzzle(): void {
+    onClearButtonPressed();
+
+    const generator = new SudokuGenerator();
+    const puzzle = generator.generateRandomPuzzle();
+
+    if (typeof puzzle !== 'boolean') {
+      setPuzzle(puzzle);
+    }
+  }
+
+  function setPuzzle(puzzle: SudokuGridType): void {
+    for (let i = 0; i < puzzle.length; i++) {
+      for (let j = 0; j < puzzle[i].length; j++) {
+        setSquareValue(puzzle[i][j], i, j); 
+      }        
+    }
+  }
+
   return (
     <div>
-      <TopBar speed={speed} setSpeed={setSpeed}/>
+      <TopBar speed={speed} setSpeed={setSpeed} onGenerateButtonPressed={generateRandomPuzzle}/>
       <Sudoku 
         setSquareValue={setSquareValue} 
         rows={rows} 
