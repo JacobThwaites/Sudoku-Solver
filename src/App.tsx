@@ -61,7 +61,7 @@ export default function App(): JSX.Element {
         newRows[i][j] = null;
       }
     }
-
+    
     setShouldDisplaySolution(false);
     setRows(newRows);
     setStartingPosition(newRows);

@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: #1D3557;
 }
 
 #speed-select-label {
@@ -12,5 +13,10 @@
 }
 
 #speed-select {
+    color: white;
+}
+
+.MuiPopover-root {
+    background-color: 1D3557;
     color: white;
 }

@@ -29,7 +29,7 @@ export default function SudokuButtons(props: Props): JSX.Element {
                 setNoSolutionFound={props.setNoSolutionFound}
                 setIsInvalidPuzzle={props.setIsInvalidPuzzle}
             />
-            <StyledButton onClick={props.onClearButtonPressed} label='Clear'/>
+            <StyledButton id='clear-button' onClick={props.onClearButtonPressed} label='Clear'/>
             <StyledButton disabled={props.isShowStepsButtonDisabled} onClick={props.onSolutionButtonClick} label='Show Steps'/>
         </div>
     );

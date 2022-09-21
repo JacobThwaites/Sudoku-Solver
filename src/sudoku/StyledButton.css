@@ -1,0 +1,13 @@
+.styled-button {
+    background-color: #457B9D !important;
+}
+
+#clear-button {
+    background-color: #E63946 !important;
+}
+
+.styled-button:disabled {
+    opacity: .4;
+    pointer-events: none;
+    cursor: not-allowed;
+}
