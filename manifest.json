@@ -1,8 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-  ],
+  "short_name": "Sudoku Solver",
+  "name": "Sudoku Solver",
+  "icons": [{
+    "src": "sudoku-logo.png",
+    "sizes": "512x512"
+}],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
