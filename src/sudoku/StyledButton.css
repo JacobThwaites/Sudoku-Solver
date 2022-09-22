@@ -11,3 +11,9 @@
     pointer-events: none;
     cursor: not-allowed;
 }
+
+@media (max-width: 320px) {
+    .styled-button {
+        width: 50vw;
+    }
+  }

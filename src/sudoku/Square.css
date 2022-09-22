@@ -1,38 +1,56 @@
 .square {
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    font-size: 3em;
-    font-family: Helvetica;
-    text-align: center;
-    width: 11.11%;
-    height: 11.201%;
-    border: 1px solid #444;
-    caret-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  font-size: 3em;
+  font-family: Helvetica;
+  text-align: center;
+  width: 11.11%;
+  height: 11.201%;
+  border: 1px solid #444;
+  caret-color: transparent;
 }
 
 .square {
-    font-weight: lighter;
+  font-weight: lighter;
 }
 
 .starting-position {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-
 .top-square {
-    border-top: 3px solid black;
+  border-top: 3px solid black;
 }
 
 .bottom-square {
-    border-bottom: 3px solid black;
+  border-bottom: 3px solid black;
 }
 
 .left-square {
-    border-left: 3px solid black;
+  border-left: 3px solid black;
 }
 
 .right-square {
-    border-right: 3px solid black;
+  border-right: 3px solid black;
 }
+
+@media (max-width: 620px) {
+  .square {
+    width: 10.11vw;
+    height: 10.201vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .square {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 300px) {
+    .square {
+      font-size: 1.5rem;
+    }
+  }

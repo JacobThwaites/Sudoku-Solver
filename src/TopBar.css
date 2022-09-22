@@ -20,3 +20,11 @@
     background-color: 1D3557;
     color: white;
 }
+
+
+@media (max-width: 670px) {
+    #top-bar {
+        flex-direction: column;
+        height: 250px;
+    }
+  }

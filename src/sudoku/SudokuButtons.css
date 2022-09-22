@@ -5,3 +5,12 @@
     height: 40px;
     margin-top: 10px;
 }
+
+
+@media (max-width: 320px) {
+    #sudoku-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+    }
+  }

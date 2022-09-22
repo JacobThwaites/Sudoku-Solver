@@ -1,4 +1,12 @@
 #generate-puzzle-button {
     background-color: #457B9D;
+    margin-right: 20px;
     color: white;
 }
+
+@media (max-width: 670px) {
+    #generate-puzzle-button {
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+  }

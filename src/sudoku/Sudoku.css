@@ -1,0 +1,5 @@
+@media (max-width: 400px) {
+    #sudoku {
+        padding-left: 10px;
+    }
+  }
