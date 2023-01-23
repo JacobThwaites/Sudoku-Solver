@@ -3,6 +3,7 @@ import StyledButton from "./sudoku/StyledButton";
 import { SudokuGridType } from "./SudokuGridType";
 import { SudokuSolver } from "./solver/SudokuSolver";
 import { isValidSudoku } from "./utils/utils";
+import { copySudokuGrid } from "./utils/copySudokuGrid";
 
 interface SolveButtonProps {
   disabled: boolean;
@@ -42,14 +43,4 @@ export default function SolveButton(props: SolveButtonProps) {
       label="Solve"
     />
   );
-}
-
-function copySudokuGrid(sudoku: SudokuGridType): SudokuGridType {
-  const copy = [];
-
-  for (let i = 0; i < sudoku.length; i++) {
-    copy.push([...sudoku[i]]);
-  }
-
-  return copy;
 }

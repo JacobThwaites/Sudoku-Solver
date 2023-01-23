@@ -9,21 +9,24 @@ export default function SpeedSelector(props: { speed: string, setSpeed(speed: st
     props.setSpeed(event.target.value as string);
   };
 
+  const speedOptions = ['Super Slow', 'Slow', 'Normal', 'Fast', 'Super Fast'];
+
   return (
     <FormControl>
       <InputLabel id="speed-select-label">Speed:</InputLabel>
       <Select
         labelId="speed-select-label"
         id="speed-select"
+        data-testid="speed-select"
         value={props.speed}
         label="Speed"
         onChange={handleSpeedChange}
       >
-        <MenuItem value={'Super Slow'}>Super Slow</MenuItem>
-        <MenuItem value={'Slow'}>Slow</MenuItem>
-        <MenuItem value={'Normal'}>Normal</MenuItem>
-        <MenuItem value={'Fast'}>Fast</MenuItem>
-        <MenuItem value={'Super Fast'}>Super Fast</MenuItem>
+        {
+          speedOptions.map(option => {
+            return <MenuItem key={option} data-testid='speed-option' value={option}>{option}</MenuItem>
+          })
+        }
       </Select>
     </FormControl>
   );

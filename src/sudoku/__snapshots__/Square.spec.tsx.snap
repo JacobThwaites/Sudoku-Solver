@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Square correctly 1`] = `
+<input
+  className="testClass"
+  data-testid="square"
+  maxLength={1}
+  onChange={[Function]}
+  onClick={[MockFunction]}
+  onKeyDown={[Function]}
+  type="text"
+  value={1}
+/>
+`;

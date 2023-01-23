@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders SpeedSelector correctly 1`] = `
+<div
+  className="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
+>
+  <label
+    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+    data-shrink={true}
+    id="speed-select-label"
+  >
+    Speed:
+  </label>
+  <div
+    className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+    data-testid="speed-select"
+    onClick={[Function]}
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="speed-select-label speed-select"
+      className="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+      id="speed-select"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      Slow
+    </div>
+    <input
+      aria-hidden={true}
+      className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+      disabled={false}
+      onAnimationStart={[Function]}
+      onChange={[Function]}
+      required={false}
+      tabIndex={-1}
+      value="Slow"
+    />
+    <svg
+      aria-hidden={true}
+      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+      data-testid="ArrowDropDownIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7 10l5 5 5-5z"
+      />
+    </svg>
+    <fieldset
+      aria-hidden={true}
+      className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+    >
+      <legend
+        className="css-1in441m"
+      >
+        <span>
+          Speed
+        </span>
+      </legend>
+    </fieldset>
+  </div>
+</div>
+`;

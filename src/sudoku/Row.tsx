@@ -1,8 +1,8 @@
 import Square from "./Square";
 import { getSquareClassname } from "../utils/squareClassnameGenerator";
 import { CoordinatesType } from "../utils/CoordinatesType";
-import './Row.css';
 import { areCoordinatesEqual } from "../utils/utils";
+import './Row.css';
 
 
 interface RowProps {

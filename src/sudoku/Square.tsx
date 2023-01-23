@@ -6,7 +6,7 @@ import './Square.css'
 interface SquareProps {
   value: number,
   column: number,
-  setSquareValue: Function, 
+  setSquareValue(squareNum: number, col: number): void, 
   handleArrowKey: Function,
   className: string,
   setActiveSquare: any,
@@ -43,6 +43,7 @@ export default function Square(props: SquareProps) {
   return (
     <>
       <input 
+        data-testid="square"
         className={props.className}
         type="text" 
         value={props.value ? props.value : ''}
