@@ -56,6 +56,7 @@ export default function App(): JSX.Element {
     setIsSolveButtonPressed(false);
     setNoSolutionFound(false);
     setIsInvalidPuzzle(false);
+    setInvalidCoordinates(new Set());
   }
 
   function clearRows(): void {

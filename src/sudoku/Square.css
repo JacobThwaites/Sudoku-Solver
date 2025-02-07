@@ -37,7 +37,16 @@
 }
 
 .invalid {
-  background-color: red;
+  background: radial-gradient(
+      circle, 
+      rgba(255, 0, 0, 0) 50%,
+      rgba(255, 0, 0, 0.5) 80%,
+      rgba(255, 0, 0, 1) 100% 
+    );
+}
+
+.square:user-invalid {
+  color: red;
 }
 
 @media (max-width: 620px) {
