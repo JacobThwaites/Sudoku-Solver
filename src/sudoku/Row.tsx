@@ -4,7 +4,6 @@ import { CoordinatesType } from "../utils/CoordinatesType";
 import { areCoordinatesEqual } from "../utils/utils";
 import './Row.css';
 
-
 interface RowProps {
   rowIndex: number,
   numbers: Array<number>,
@@ -12,7 +11,8 @@ interface RowProps {
   handleArrowKey: Function,
   rowStartingPosition: Array<number>,
   activeSquare: CoordinatesType,
-  setActiveSquare: Function
+  setActiveSquare: Function,
+  invalidCoordinates: Set<string>
 }
 
 export default function Row(props: RowProps) {
@@ -30,9 +30,11 @@ export default function Row(props: RowProps) {
       {props.numbers.map((num: number, column: number) => {
         const isSet = props.rowStartingPosition[column] !== null;
         const isActiveSquare = areCoordinatesEqual([props.rowIndex, column], props.activeSquare);
+        const isInvalid = props.invalidCoordinates.has(`${props.rowIndex}${column}`);
+
         return (
           <Square 
-            className={getSquareClassname(props.rowIndex + 1, column + 1, isSet)} 
+            className={getSquareClassname(props.rowIndex + 1, column + 1, isSet, isInvalid)} 
             isActiveSquare={isActiveSquare}
             key={column} 
             column={column} 

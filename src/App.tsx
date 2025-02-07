@@ -8,6 +8,7 @@ import './App.css';
 import TopBar from "./TopBar";
 import { calculateDelayTime } from "./utils/utils";
 import { SudokuGenerator } from "./solver/SudokuGenerator";
+import { SudokuValidator } from "./solver/SudokuValidator";
 
 export default function App(): JSX.Element {
   const [rows, setRows] = useState(emptyGrid);
@@ -18,6 +19,7 @@ export default function App(): JSX.Element {
   const [isSolveButtonPressed, setIsSolveButtonPressed] = useState(false);
   const [noSolutionFound, setNoSolutionFound] = useState(false);
   const [isInvalidPuzzle, setIsInvalidPuzzle] = useState(false);
+  const [invalidCoordinates, setInvalidCoordinates] = useState<Set<string>>(new Set())
   const [speed, setSpeed] = useState('Normal');
   const currentSpeed = useRef('Normal');
   
@@ -34,6 +36,9 @@ export default function App(): JSX.Element {
     const newRows = [...rows];
     newRows[row][col] = num;
     setRows(newRows);
+    const validator = new SudokuValidator();
+    const newInvalidCoordinates = validator.getInvalidCoordinates(newRows);
+    setInvalidCoordinates(newInvalidCoordinates);
   };
 
   function updateStartingPosition(startingPosition: SudokuGridType): void {
@@ -134,6 +139,7 @@ export default function App(): JSX.Element {
         setSquareValue={setSquareValue} 
         rows={rows} 
         startingPosition={startingPosition}
+        invalidCoordinates={invalidCoordinates}
       />
       {isInvalidPuzzle &&
         <Alert className='alert' severity="error">Invalid puzzle!</Alert>

@@ -36,6 +36,10 @@
   border-right: 3px solid black;
 }
 
+.invalid {
+  background-color: red;
+}
+
 @media (max-width: 620px) {
   .square {
     width: 10.11vw;

@@ -18,6 +18,28 @@ export class SudokuValidator {
         );
     }
 
+    public getInvalidCoordinates(board: SudokuGridType): Set<string> {
+        const invalidCoordinates = new Set<string>();
+        const invalidRowCoordinates = this.getInvalidRowCoordinates(board);
+        
+        for (const coordinate of invalidRowCoordinates) {
+            invalidCoordinates.add(coordinate);
+        }
+
+        const invalidColumnCoordinates = this.getInvalidColumnCoordinates(board);
+
+        for (const coordinate of invalidColumnCoordinates) {
+            invalidCoordinates.add(coordinate);
+        }
+
+        const invalidSquareCoordinates = this.getInvalidSquareCoordinates(board);
+        for (const coordinate of invalidSquareCoordinates) {
+            invalidCoordinates.add(coordinate);
+        }
+
+        return invalidCoordinates;
+    }
+
     private areRowsValid(board: SudokuGridType): boolean {
         for (let i = 0; i < board.length; i++) {
             if (!this.isValidSet(board[i])) {
@@ -145,5 +167,110 @@ export class SudokuValidator {
         }
 
         return true;
+    }
+
+    private getInvalidRowCoordinates(board: SudokuGridType): string[] {
+        const invalidCoordinates: Set<string> = new Set();
+        
+        for (let x = 0; x < board.length; x++) {
+            const nums: any = {};
+            const row = board[x];
+            
+            for (let y = 0; y < row.length; y++) {
+                const num = row[y];
+
+                if (!num) {
+                    continue;
+                }
+                else if (num in nums) {
+
+                    nums[num].push(`${x}${y}`);
+                } else {
+                    nums[num] = [`${x}${y}`];
+                }
+            }
+
+            for (const key in nums) {
+                if (nums[key].length > 1) {
+                    for (const num of nums[key]) {
+                     invalidCoordinates.add(num);   
+                    }
+                }
+            }
+        }
+
+        return [...invalidCoordinates];
+    }
+
+    private getInvalidColumnCoordinates(board: SudokuGridType): string[] {
+        const invalidCoordinates: Set<string> = new Set();
+        
+        for (let y = 0; y < board[0].length; y++) {
+            const nums: any = {};
+            
+            for (let x = 0; x < board.length; x++) {
+                const num = board[x][y];
+
+                if (!num) {
+                    continue;
+                }
+                else if (num in nums) {
+                    nums[num].push(`${x}${y}`);
+                } else {
+                    nums[num] = [`${x}${y}`];
+                }
+            }
+
+            for (const key in nums) {
+                if (nums[key].length > 1) {
+                    for (const num of nums[key]) {
+                     invalidCoordinates.add(num);   
+                    }
+                }
+            }
+        }
+
+        return [...invalidCoordinates];
+    }
+
+    private getInvalidSquareCoordinates(board: SudokuGridType): string[] {
+        let invalidCoordinates: string[] = [];
+
+        for (let x = 0; x < board.length; x += 3) {
+            for (let y = 0; y < board[x].length; y+=3) {
+                const invalid = this.checkSquare(board, x, y);
+                invalidCoordinates = [...invalidCoordinates, ...invalid];
+            }
+        }
+
+        return [...invalidCoordinates];
+    }
+
+    private checkSquare(board: SudokuGridType, startX: number, startY: number): string[] {
+        let invalidCoordinates: string[] = [];
+
+        const coordinates: {[num: number]: string[]} = {};
+        
+        for (let x = startX; x < startX + 3; x++) {
+            for (let y = startY; y < startY + 3; y++) {
+                const squareValue = board[x][y];
+
+                if (!squareValue) {
+                    continue;
+                } else if (squareValue in coordinates) {
+                    coordinates[squareValue].push(`${x}${y}`);
+                } else {
+                    coordinates[squareValue] = [`${x}${y}`];
+                }
+            }
+        }
+
+        for (const values of Object.values(coordinates)) {
+            if (values.length > 1) {
+                invalidCoordinates = [...invalidCoordinates, ...values];
+            }
+        }
+
+        return invalidCoordinates;
     }
 }

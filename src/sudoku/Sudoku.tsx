@@ -8,7 +8,8 @@ import './Sudoku.css';
 interface SudokuProps {
   rows: SudokuGridType,
   setSquareValue: Function,
-  startingPosition: SudokuGridType
+  startingPosition: SudokuGridType,
+  invalidCoordinates: Set<string>
 }
 
 export default function Sudoku(props: SudokuProps) {
@@ -32,6 +33,7 @@ export default function Sudoku(props: SudokuProps) {
             rowStartingPosition={props.startingPosition[index]}
             activeSquare={activeSquare}
             setActiveSquare={setActiveSquare}
+            invalidCoordinates={props.invalidCoordinates}
           />
         )
       })

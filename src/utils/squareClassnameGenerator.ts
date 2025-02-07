@@ -1,4 +1,4 @@
-export function getSquareClassname(row: number, col: number, isNumberSet: boolean): string {
+export function getSquareClassname(row: number, col: number, isNumberSet: boolean, isInvalid: boolean): string {
     let className = 'square';
     
     if (row === 1) {
@@ -18,6 +18,10 @@ export function getSquareClassname(row: number, col: number, isNumberSet: boolea
 
     if (isNumberSet) {
         className += ' starting-position';
+    }
+
+    if (isInvalid) {
+        className += ' invalid';
     }
 
     return className;
